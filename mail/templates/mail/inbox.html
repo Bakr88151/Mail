@@ -1,0 +1,48 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.email }}</h2>
+
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div id="emails-view">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+    <div id = "show-email" style="display: none;">
+        <input type="hidden" value="{{ request.user.email }}" id="user">
+        <strong>From: </strong><div id="from" style="display: inline;"></div><br>
+        <strong>To: </strong><div id="to" style="display: inline;"></div><br>
+        <strong>Subject: </strong><div id="subject" style="display: inline;"></div><br>
+        <strong>Timestamp: </strong><div id="timestamp" style="display: inline;"></div><br>
+        <button id="reply" class="btn btn-sm btn-outline-primary">Reply</button>
+        <hr>
+        <p id="body"></p>
+        <button id="archive"></button>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+textarea {
+    min-height: 400px;
+}
+body {
+    margin: 20px;
+}
+
+.email_container{
+    display: flex;
+    height: 35px;
+    border: 1px solid;
+    border-collapse: collapse;
+    font-size: 20px;
+    position: relative;
+}
+.sender{
+    left: 0%;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+.timestamp{
+    position: absolute;
+    right: 0%;
+    margin-right: 5px;
+}
